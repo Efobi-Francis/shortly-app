@@ -8,10 +8,12 @@ export default function Header() {
   const [isClicked, setIsClicked] = useState(false)
 
   const handleClickOpen =(event)=> {
+    event.preventDefault();
     setIsClicked(true)
   }
 
   const handleClickClose =(event)=> {
+    event.preventDefault();
     setIsClicked(false)
   }
 
