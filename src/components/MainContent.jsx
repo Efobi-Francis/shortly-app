@@ -35,8 +35,8 @@ export default function MainContent() {
                 </div>
                 <h4 className='font-bold text-[hsl(255,11%,22%)] text-2xl -mt-5 mb-5'>Detailed Records</h4>
                 <p>
-                    Gain insights into who is clicking your links. Knowing when and where 
-                    people engage with your content helps inform better decisions.
+                    Gain insights into who is clicking <br /> your links. Knowing when and <br />where 
+                    people engage with your <br />content helps inform better <br /> decisions.
                 </p>
             </div>
 
