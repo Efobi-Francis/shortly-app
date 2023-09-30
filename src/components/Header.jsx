@@ -38,7 +38,7 @@ export default function Header() {
                         <div className=" h-[1px] w-full bg-[hsl(0,0%,75%)]/50 my-8"></div>
                         <div className="flex flex-col w-full h-28 justify-between mb-10">
                             <a href="">Login</a>
-                            <button href="" className=" my-5font-medium bg-[hsl(180,66%,49%)] px-10 py-3 rounded-full">Sign Up</button>
+                            <button href="" className=" my-5 font-medium bg-[hsl(180,66%,49%)] px-10 py-3 rounded-full">Sign Up</button>
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@ export default function Header() {
           Build your brand's recognition and <br /> get detailed insights on how your <br />
           links are performing.
         </p>
-        <button className="my-5 text-white font-medium bg-[hsl(180,66%,49%)] px-10 py-3 rounded-full">Get Started</button>
+        <button className="my-5 text-white text-2xl font-medium bg-[hsl(180,66%,49%)] px-12 py-3 rounded-full">Get Started</button>
       </div>
     </div>
   );
