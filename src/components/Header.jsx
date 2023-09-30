@@ -30,7 +30,7 @@ export default function Header() {
   return (
     <div className="container">
       <nav className="flex justify-between items-center pt-8 pb-5 ">
-        <img src={logo} alt="logo" />
+        <a href=""><img src={logo} alt="logo" /></a>
 
         {/* mobile hamburgar */}
         <div>
@@ -46,7 +46,7 @@ export default function Header() {
 
           {isClicked && (
             <div>
-              
+
                 {/* overlay */}
                 {/* <div className=" absolute inset-0 bg-black/30 h-screen w-full z-10"></div> */}
 
