@@ -15,7 +15,7 @@ export default function MainContent() {
 
         <div className=' flex flex-col justify-center items-center my-20 '>
 
-            <div className=' bg-white px-5 pb-10 flex flex-col justify-center items-center rounded-lg'>
+            <div className=' bg-white px-5 pb-10 flex flex-col justify-center items-center rounded-lg w-full'>
                 <div className=' relative -top-16 w-28 h-28 bg-[hsl(257,27%,26%)] flex justify-center items-center rounded-full'>
                     <img src={iconBrandRecognition} alt="icon-brand-recognition" />
                 </div>
@@ -29,7 +29,7 @@ export default function MainContent() {
             {/* vertical line */}
             <div className='w-3 h-36 bg-[hsl(180,66%,49%)]'></div>
 
-            <div className=' bg-white px-5 pb-10 flex flex-col justify-center items-center rounded-lg'>
+            <div className=' bg-white px-5 pb-10 flex flex-col justify-center items-center rounded-lg w-full'>
                 <div className=' relative -top-16 w-28 h-28 bg-[hsl(257,27%,26%)] flex justify-center items-center rounded-full'>
                     <img src={iconDetailedRecords} alt="icon-detailed-records" />
                 </div>
@@ -43,7 +43,7 @@ export default function MainContent() {
             {/* vertical line */}
             <div className='w-3 h-36 bg-[hsl(180,66%,49%)]'></div>
 
-            <div className=' bg-white px-5 pb-10 flex flex-col justify-center items-center rounded-lg'>
+            <div className=' bg-white px-5 pb-10 flex flex-col justify-center items-center rounded-lg w-full'>
                 <div className=' relative -top-16 w-28 h-28 bg-[hsl(257,27%,26%)] flex justify-center items-center rounded-full'>
                     <img src={iconFullyCustomizable} alt="icon-fully-customizable" />
                 </div>
