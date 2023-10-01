@@ -55,19 +55,16 @@ export default function Form() {
           newLinks.pop();
           // Update localStorage immediately after removing the link
           localStorage.setItem('links', JSON.stringify(newLinks));
-
-          // or alternatively, use slice to select the first 3 elements
-          // newLinks.slice(0, 3);
         }
 
         // Remove the link after 5 minutes
-        // setTimeout(() => {
-        //   setLinks(prevLinks => {
-        //     const remainingLinks = prevLinks.filter(link => link.shortUrl !== newLink.shortUrl && link.originalUrl !== newLink.originalUrl);
-        //     localStorage.setItem('links', JSON.stringify(remainingLinks));
-        //     return remainingLinks;
-        //   });
-        // }, 5 * 60 * 1000);  // 5 minutes
+        setTimeout(() => {
+          setLinks(prevLinks => {
+            const remainingLinks = prevLinks.filter(link => link.shortUrl !== newLink.shortUrl && link.originalUrl !== newLink.originalUrl);
+            localStorage.setItem('links', JSON.stringify(remainingLinks));
+            return remainingLinks;
+          });
+        }, 5 * 60 * 1000);  // 5 minutes
 
         return newLinks;
       });
