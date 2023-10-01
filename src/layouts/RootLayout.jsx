@@ -13,7 +13,7 @@ export default function RootLayout() {
     <div className='font-poppins text-lg text-[hsl(257,7%,63%)] overflow-x-hidden'>
         <Header/>
 
-        <main className='container bg-[hsl(225,33%,95%)] mt-40'>
+        <main className='container bg-[hsl(225,33%,95%)] mt-40 lg:mt-[22rem]'>
             <Form/>
             <MainContent/>
         </main>

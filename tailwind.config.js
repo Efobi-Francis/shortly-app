@@ -16,7 +16,9 @@ export default {
     extend: {
       backgroundImage: {
         'form-bg-mobile': "url('/src/assets/images/bg-shorten-mobile.svg')",
-        'boost-bg-mobile': "url('/src/assets/images/bg-boost-mobile.svg')"
+        'boost-bg-mobile': "url('/src/assets/images/bg-boost-mobile.svg')",
+        'form-bg-desktop': "url('/src/assets/images/bg-boost-desktop.svg')",
+        'boost-bg-desktop': "url('/src/assets/images/bg-boost-desktop.svg')",
       }
     },
   },
