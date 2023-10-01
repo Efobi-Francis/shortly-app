@@ -4,7 +4,7 @@ export default function BoostLink() {
   return (
     <>
       <div className="bg-[hsl(257,27%,26%)]">
-        <div className=" container flex flex-col justify-center items-center bg-boost-bg-mobile bg-cover bg-no-repeat h-80 lg:bg-boost-bg-desktop lg:bg-center lg:h-60">
+        <div className=" px-4 flex flex-col justify-center items-center bg-boost-bg-mobile bg-cover bg-no-repeat h-80 lg:bg-boost-bg-desktop lg:bg-center lg:h-60 lg:px-0">
           <h4 className=" text-white text-3xl font-bold mt-4 lg:text-4xl lg:mt-8">
             Boost your links today
           </h4>
