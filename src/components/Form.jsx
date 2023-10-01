@@ -3,27 +3,25 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 export default function Form() {
   const [url, setUrl] = useState('');
-  const [originalUrl, setOriginalUrl] = useState('')
-  const [shortUrl, setShortUrl] = useState('');
+  const [links, setLinks] = useState([])
   const [error, setError] = useState('');
 
-  const [prevOriginalUrl, setPrevOriginalUrl] = useState('');
-  const [prevShortUrl, setPrevShortUrl] = useState('');
-
-  const [copy, setCopy] = useState(false)
-
   // Load the previous shortened URL from localStorage when the component mounts
-  // useEffect( () => {
-  //   const storedOriginalUrl = localStorage.getItem('prevOriginalUrl');
-  //   const storedShortUrl = localStorage.getItem('prevShortUrl');
+  useEffect( () => {
+    const storedLinks = JSON.parse(localStorage.getItem('links'));
+    if (storedLinks) {
+      setLinks(storedLinks);
+    }
+  }, [])
 
-  //   setPrevOriginalUrl(storedOriginalUrl)
-  //   setPrevShortUrl(storedShortUrl);
-  // }, [])
-
-  const handleCopyText = (e) =>{
-    e.preventDefault();
-    setCopy(true);
+  const handleCopyText = (index) =>{
+    setLinks(prevLinks => prevLinks.map((link, i) => {
+      if (i === index) {
+        return {...link, copied: true};
+      } else {
+        return link;
+      }
+    }));
   }
 
   const handleSubmit = async (e) => {
@@ -42,17 +40,41 @@ export default function Form() {
       }
   
       const data = await response.json();
-      
-      // setPrevOriginalUrl(originalUrl) //stores the value of OriginalUrl into previous original url 
-      setOriginalUrl(data.result.original_link);
 
-      // setPrevShortUrl(shortUrl)
-      setShortUrl(data.result.full_short_link);
+      const newLink = {
+        originalUrl: data.result.original_link,
+        shortUrl: data.result.full_short_link,
+        copied: false
+      };
       
-      // Store the origianl URL and shortened URL in localStorage
-      // localStorage.setItem('prevOriginalUrl', originalUrl)
-      // localStorage.setItem('prevShortUrl', shortUrl);
+      setLinks(prevLinks => {
+        const newLinks = [newLink, ...prevLinks];
+        localStorage.setItem('links', JSON.stringify(newLinks));
+
+        if (newLinks.length > 3) {
+          newLinks.pop();
+          // Update localStorage immediately after removing the link
+          localStorage.setItem('links', JSON.stringify(newLinks));
+
+          // or alternatively, use slice to select the first 3 elements
+          // newLinks.slice(0, 3);
+        }
+
+        // Remove the link after 5 minutes
+        // setTimeout(() => {
+        //   setLinks(prevLinks => {
+        //     const remainingLinks = prevLinks.filter(link => link.shortUrl !== newLink.shortUrl && link.originalUrl !== newLink.originalUrl);
+        //     localStorage.setItem('links', JSON.stringify(remainingLinks));
+        //     return remainingLinks;
+        //   });
+        // }, 5 * 60 * 1000);  // 5 minutes
+
+        return newLinks;
+      });
       
+      // Clear the input field
+      // setUrl('');
+
     } catch (error) {
       setError('An error occurred while shortening the URL');
     }
@@ -82,29 +104,21 @@ export default function Form() {
 
         {/* display links */}
 
-        {shortUrl && (
-          <div className=" relative bg-white flex flex-col items-start w-full p-5 rounded-lg -mt-12 mb-14 overflow-hidden">
-            <p className="pb-2 text-[hsl(255,11%,22%)] truncate w-full">{originalUrl}</p>
+        {links.map((link, index) => (
+          <div className=" relative bg-white flex flex-col items-start w-full p-5 rounded-lg -mt-12 mb-14 overflow-hidden" key={index}>
+            <p className="pb-2 text-[hsl(255,11%,22%)] truncate w-full">{link.originalUrl}</p>
 
             {/* horizontal line */}
             <div className=" absolute inset-x-0 top-10 h-[1px] w-full bg-[hsl(0,0%,75%)]/50 my-4"></div>
-            <p className="py-3 text-[hsl(180,66%,49%)]">{shortUrl}</p>
+            <p className="py-3 text-[hsl(180,66%,49%)]">{link.shortUrl}</p>
 
-            <CopyToClipboard text={shortUrl}>
-              <button onClick={handleCopyText} className={`${copyBtnStyle} ${ !copy ? 'bg-[hsl(180,66%,49%)]' : 'bg-[hsl(255,11%,22%)]' }`}>
-                {!copy ? (
-                  <span>Copy</span>
-                ):(
-                  <span>Copied!</span>
-                )}
+            <CopyToClipboard text={link.shortUrl} onCopy={() => handleCopyText(index)}>
+              <button className={`${copyBtnStyle} ${ link.copied ? 'bg-[hsl(255,11%,22%)]' : 'bg-[hsl(180,66%,49%)]' }`}>
+                {link.copied ? (<span>Copied!</span>):(<span>Copy</span>)}
               </button>
             </CopyToClipboard>
           </div>
-        )}
-
-        
-
-        
+        ))}
 
       </div>
     </>
