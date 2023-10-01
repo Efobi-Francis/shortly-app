@@ -5,6 +5,10 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      'lg': '768px'
+      // => @media (min-width: 768px)
+    },
     fontFamily: {
       'poppins': ['poppins', 'system-ui'],
     },
